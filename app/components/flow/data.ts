@@ -1,41 +1,27 @@
 export const flowList = {
   sub: [
     {
-      id: "flow-list-1",
-      name: "Development",
+      id: "1",
+      name: "some value some value 123456",
       sub: [
-        { id: "flow-list-1-1", name: "External" },
         {
-          id: "flow-list-1-2",
-          name: "Internal",
+          id: "1-1",
+          name: "1-1",
           sub: [
-            { id: "flow-list-2-1", name: "i1" },
+            { id: "1-1-1", name: "1-1-1" },
             {
-              id: "flow-list-2-2",
-              name: "i2",
+              id: "1-1-2",
+              name: "1-1-2",
               sub: [
-                { id: "flow-list-2-2-1", name: "i1" },
-                { id: "flow-list-2-2-2", name: "i2" },
+                { id: "1-1-2-1", name: "1-1-2-1" },
+                { id: "1-1-2-2", name: "1-1-2-2" },
               ],
             },
+            { id: "1-1-3", name: "1-1-3" },
+            { id: "1-1-4", name: "1-1-4" },
+            { id: "1-1-5", name: "1-1-5" },
           ],
         },
-      ],
-    },
-    {
-      id: "flow-list-2",
-      name: "sales",
-    },
-  ],
-};
-
-export const flowList2 = {
-  sub: [
-    {
-      id: "1",
-      name: "1",
-      sub: [
-        { id: "1-1", name: "1-1" },
         {
           id: "1-2",
           name: "1-2",
@@ -55,7 +41,7 @@ export const flowList2 = {
     },
     {
       id: "2",
-      name: "2",
+      name: "some value some value some value some value",
       sub: [
         { id: "2-1", name: "2-1" },
         {
@@ -77,19 +63,3 @@ export const flowList2 = {
     },
   ],
 };
-
-// console.log("1" + isActive["1"]);
-// console.log("1-1" + isActive["1-1"]);
-// console.log("1-2" + isActive["1-2"]);
-// console.log("1-2-1" + isActive["1-2-1"]);
-// console.log("1-2-2" + isActive["1-2-2"]);
-// console.log("1-2-2-1" + isActive["1-2-2-1"]);
-// console.log("1-2-2-2" + isActive["1-2-2-2"]);
-
-// console.log("2" + isActive["2"]);
-// console.log("2-1" + isActive["2-1"]);
-// console.log("2-2" + isActive["2-2"]);
-// console.log("2-3-2" + isActive["2-3-2"]);
-// console.log("2-3-3" + isActive["2-3-3"]);
-// console.log("2-3-3-2" + isActive["2-3-3-2"]);
-// console.log("2-3-3-3" + isActive["2-3-3-3"]);

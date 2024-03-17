@@ -1,41 +1,84 @@
 "use client";
 import React, { useState } from "react";
-import Heading from "./Heading";
 import Tag from "./Tag";
+import Heading from "./Heading";
 
 const Flow = ({ data }: any) => {
   const [isActive, setIsActive] = useState<any>({});
+  const maxWidth = 300;
+  const fontSize = 14;
+  const maxTagWidth = Math.ceil(maxWidth / ((fontSize * 77) / 100));
+  var availableTagWidth = maxTagWidth;
+  var noOfLine = 0;
 
-  const updateActive = (key: string) => {
-    setIsActive((pre: any) => ({
-      ...pre,
-      [key]: !pre[key],
-    }));
+  for (var i = 0; i < data.sub.length; i++) {
+    availableTagWidth -= 3;
+    if (data.sub[i].name.length > maxTagWidth) {
+      noOfLine += Math.ceil(data.sub[i].name.length / maxTagWidth);
+      continue;
+    }
+    if (data.sub[i].name.length > availableTagWidth) {
+      noOfLine++;
+      availableTagWidth = maxTagWidth;
+      continue;
+    }
+    if (noOfLine === 0) {
+      noOfLine++;
+    }
+    availableTagWidth -= data.sub[i].name.length;
+  }
+
+  var top = 150;
+  if (data.name) {
+    top += 20;
+  }
+
+  top += noOfLine * 18;
+
+  const toggleKye = (key: any, sub: any) => {
+    if (!sub) {
+      return;
+    }
+    if (!key) {
+      return;
+    }
+    setIsActive({
+      [key]: !isKeyActive(key),
+    });
   };
+
   const isKeyActive = (key: any) => {
     return isActive[key] === true;
   };
 
-  console.log(isKeyActive("flow-list-1-1"));
   return (
     <div className="relative flex flex-col items-center gap-[5px] w-[300px] rounded bg-[#ffffff] p-[20px] text-sm">
       {data.name ? <Heading name={data.name} /> : <></>}
-
       {data.sub ? (
         <div className="flex flex-wrap gap-[5px] justify-center">
           {data.sub.map((value: any, index: number) => {
             return (
               <div key={index}>
-                <div
-                  className="bg-gray-200 px-[10px]"
-                  onClick={() => updateActive(value.id)}
-                >
-                  <Tag name={value.name} />
-                  {isKeyActive(value.id) ? "yes" : "no"}
+                <div onClick={() => toggleKye(value.id, value.sub)}>
+                  <Tag
+                    name={value.name}
+                    hasChild={value.sub?.length}
+                    isActive={isKeyActive(value.id)}
+                  />
                 </div>
+
                 {value.sub ? (
-                  <div className="p-[10px] absolute top-[100px] left-[-10px]">
+                  <div
+                    className={`absolute top-[100px] left-0 ${
+                      isKeyActive(value.id) ? "" : "hidden"
+                    } `}
+                    style={{ top: top }}
+                  >
                     <Flow data={value} />
+                    <div
+                      className={`z-[-10] left-1/2 absolute w-[2px] bg-gray-400 `}
+                      style={{ height: top, bottom: top / 3 }}
+                    ></div>
                   </div>
                 ) : (
                   <></>
@@ -45,7 +88,7 @@ const Flow = ({ data }: any) => {
           })}
         </div>
       ) : (
-        <div></div>
+        <></>
       )}
     </div>
   );
