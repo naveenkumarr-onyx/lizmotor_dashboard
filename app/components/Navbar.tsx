@@ -37,11 +37,6 @@ const Navbar = () => {
           </a>
         </div>
         |
-        <div className="hover:scale-110 duration-1000">
-          <button className="shadow-md bg-[#ff793f] px-[5px] py-[5px] rounded-lg text-black">
-            Dashboard
-          </button>
-        </div>
       </div>
     </div>
   );
